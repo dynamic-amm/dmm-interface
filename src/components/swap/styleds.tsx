@@ -5,8 +5,37 @@ import styled, { css } from 'styled-components'
 import { Text } from 'rebass'
 import { AutoColumn } from '../Column'
 
+export const Container = styled.div`
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  grid-gap: 1.25rem;
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    justify-items: center;
+    grid-template-columns: 1fr;
+  `}
+`
+
 export const Wrapper = styled.div`
   position: relative;
+  width: 100%;
+  background: ${({ theme }) => theme.bg6};
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
+    0px 24px 32px rgba(0, 0, 0, 0.01);
+  border-radius: 8px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+`
+
+export const SwapWrapper = styled(Wrapper)`
+  min-width: 388px;
+  max-width: 388px;
+`
+
+export const SwapRoutesWrapper = styled(Wrapper)`
+  min-width: 552px;
+  max-width: 552px;
+  height: fit-content;
+  background: transparent;
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`

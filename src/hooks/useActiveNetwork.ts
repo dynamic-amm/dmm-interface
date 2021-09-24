@@ -115,7 +115,7 @@ export function useActiveNetwork() {
       const isNotConnected = !(library && library.provider && library.provider.isMetaMask)
       if (isNotConnected) {
         dispatch(updateChainIdWhenNotConnected(chainId))
-        setTimeout(() => history.push(target), 3000)
+        history.push(target)
         return
       }
 
@@ -145,10 +145,10 @@ export function useActiveNetwork() {
 
   useEffect(() => {
     const urlNetworkId = typeof qs.networkId === 'string' ? parseNetworkId(qs.networkId) : undefined
-    if (urlNetworkId && urlNetworkId !== chainId) {
+    if (account && chainId && urlNetworkId && urlNetworkId !== chainId) {
       changeNetwork(urlNetworkId)
     }
-  }, [chainId, changeNetwork, qs.networkId])
+  }, [account && chainId, changeNetwork, qs.networkId])
 
   return { changeNetwork }
 }

@@ -29,7 +29,7 @@ import ZAP_ABI from 'constants/abis/zap.json'
 import { MULTICALL_ABI } from 'constants/multicall'
 import { NETWORKS_INFO, isEVM } from 'constants/networks'
 import { EVMNetworkInfo } from 'constants/networks/type'
-import { useWeb3React } from 'hooks'
+import { useCustomChainId, useWeb3React } from 'hooks'
 import { useKyberSwapConfig } from 'state/application/hooks'
 import { FairLaunchVersion, RewardLockerVersion } from 'state/farms/classic/types'
 import { useRewardLockerAddressesWithVersion } from 'state/vesting/hooks'
@@ -60,7 +60,7 @@ export function useReadingContract(
   ABI: ContractInterface,
   customChainId?: ChainId,
 ): Contract | null {
-  const { chainId: curChainId } = useActiveWeb3React()
+  const { chainId: curChainId } = useCustomChainId()
   const chainId = customChainId || curChainId
   const { readProvider } = useKyberSwapConfig(chainId)
 
@@ -167,7 +167,7 @@ export function usePairContract(pairAddress?: string): Contract | null {
 }
 
 export function useMulticallContract(customChainId?: ChainId): Contract | null {
-  const { chainId: curChainId } = useActiveWeb3React()
+  const { chainId: curChainId } = useCustomChainId()
   const chainId = customChainId || curChainId
   return useReadingContract(isEVM(chainId) ? NETWORKS_INFO[chainId].multicall : undefined, MULTICALL_ABI, chainId)
 }

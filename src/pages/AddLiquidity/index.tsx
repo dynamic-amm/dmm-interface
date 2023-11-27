@@ -9,7 +9,7 @@ import { AddRemoveTabs, LiquidityAction } from 'components/NavigationTabs'
 import { MinimalPositionCard } from 'components/PositionCard'
 import { TutorialType } from 'components/Tutorial'
 import { PairState } from 'data/Reserves'
-import { useActiveWeb3React } from 'hooks'
+import { useActiveWeb3React, useCustomChainId } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import useMixpanel, { MIXPANEL_TYPE } from 'hooks/useMixpanel'
 import { useDerivedMintInfo } from 'state/mint/hooks'
@@ -21,7 +21,8 @@ import { Container, LiquidityProviderModeWrapper, PageWrapper, PoolName, TopBar 
 
 export default function AddLiquidity() {
   const { currencyIdA = '', currencyIdB = '', pairAddress = '' } = useParams()
-  const { chainId, isEVM } = useActiveWeb3React()
+  const { isEVM } = useActiveWeb3React()
+  const { chainId } = useCustomChainId()
   const currencyA = useCurrency(currencyIdA) ?? undefined
   const currencyB = useCurrency(currencyIdB) ?? undefined
 

@@ -11,7 +11,7 @@ import ERC20_INTERFACE, { ERC20_BYTES32_INTERFACE } from 'constants/abis/erc20'
 import { KS_SETTING_API } from 'constants/env'
 import { ETHER_ADDRESS, ZERO_ADDRESS } from 'constants/index'
 import { NativeCurrencies } from 'constants/tokens'
-import { useActiveWeb3React } from 'hooks/index'
+import { useActiveWeb3React, useCustomChainId } from 'hooks/index'
 import { useBytes32TokenContract, useMulticallContract, useTokenReadingContract } from 'hooks/useContract'
 import store, { AppState } from 'state'
 import { TokenAddressMap } from 'state/lists/reducer'
@@ -175,12 +175,12 @@ export const useTokens = (addresses: string[]): TokenMap => {
 // null if loading
 // otherwise returns the token
 export function useToken(tokenAddress?: string): Token | NativeCurrency | undefined | null {
-  const { chainId } = useActiveWeb3React()
-  const tokens = useAllTokens()
+  const { chainId } = useCustomChainId()
+  const tokens = useAllTokens(true, chainId)
 
   const address = isAddress(chainId, tokenAddress)
 
-  const tokenContract = useTokenReadingContract(address && tokenAddress !== ZERO_ADDRESS ? address : undefined)
+  const tokenContract = useTokenReadingContract(address && tokenAddress !== ZERO_ADDRESS ? address : undefined, chainId)
   const tokenContractBytes32 = useBytes32TokenContract(address ? address : undefined)
   const token =
     tokenAddress?.toLowerCase() === ZERO_ADDRESS || tokenAddress?.toLowerCase() === ETHER_ADDRESS.toLowerCase()
@@ -364,7 +364,7 @@ function useTokenV2(
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const { chainId } = useActiveWeb3React()
+  const { chainId } = useCustomChainId()
   const isETH = useMemo(
     () => chainId && currencyId?.toUpperCase() === NativeCurrencies[chainId].symbol?.toUpperCase(),
     [chainId, currencyId],

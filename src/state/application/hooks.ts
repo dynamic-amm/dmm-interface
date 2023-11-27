@@ -22,7 +22,7 @@ import ethereumInfo from 'constants/networks/ethereum'
 import { AppJsonRpcProvider } from 'constants/providers'
 import { KNC_ADDRESS } from 'constants/tokens'
 import { VERSION } from 'constants/v2'
-import { useActiveWeb3React } from 'hooks/index'
+import { useActiveWeb3React, useCustomChainId } from 'hooks/index'
 import { useAppSelector } from 'state/hooks'
 import { AppDispatch, AppState } from 'state/index'
 import { useTokenPricesWithLoading } from 'state/tokenPrices/hooks'
@@ -42,7 +42,7 @@ import {
 import { ModalParams } from './types'
 
 export function useBlockNumber(): number | undefined {
-  const { chainId } = useActiveWeb3React()
+  const { chainId } = useCustomChainId()
 
   return useSelector((state: AppState) => state.application.blockNumber[chainId])
 }

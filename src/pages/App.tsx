@@ -177,10 +177,6 @@ const RoutesWithNetworkPrefix = () => {
             element={<RedirectCreatePool />}
           />
           <Route
-            path={`${APP_PATHS.CLASSIC_ADD_LIQ}/:currencyIdA/:currencyIdB?/:pairAddress?`}
-            element={<AddLiquidity />}
-          />
-          <Route
             path={`${APP_PATHS.CLASSIC_REMOVE_POOL}/:currencyIdA/:currencyIdB/:pairAddress`}
             element={<RemoveLiquidity />}
           />
@@ -307,6 +303,11 @@ export default function App() {
                 </>
 
                 <>
+                  <Route
+                    path={`/:network${APP_PATHS.CLASSIC_ADD_LIQ}/:currencyIdA/:currencyIdB?/:pairAddress?`}
+                    element={<AddLiquidity />}
+                  />
+
                   {/* These are old routes and will soon be deprecated - Check: RoutesWithNetworkParam */}
                   <Route path={`${APP_PATHS.ELASTIC_CREATE_POOL}/*`} element={<RedirectWithNetworkPrefix />} />
                   <Route path={`${APP_PATHS.ELASTIC_INCREASE_LIQ}/*`} element={<RedirectWithNetworkPrefix />} />

@@ -29,7 +29,7 @@ import { AMP_HINT, APP_PATHS } from 'constants/index'
 import { EVMNetworkInfo } from 'constants/networks/type'
 import { NativeCurrencies } from 'constants/tokens'
 import { PairState } from 'data/Reserves'
-import { useActiveWeb3React, useWeb3React } from 'hooks'
+import { useActiveWeb3React, useCustomChainId, useWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
 import useTheme from 'hooks/useTheme'
@@ -77,10 +77,13 @@ const TokenPair = ({
   currencyIdB: string
   pairAddress: string
 }) => {
-  const { account, chainId, isEVM, networkInfo } = useActiveWeb3React()
+  const { account, isEVM, networkInfo } = useActiveWeb3React()
+  const { chainId } = useCustomChainId()
+  console.log(chainId)
   const { library } = useWeb3React()
   const theme = useTheme()
   const currencyA = useCurrency(currencyIdA)
+  console.log('xxx', currencyA)
   const currencyB = useCurrency(currencyIdB)
 
   const currencyAIsETHER = !!(chainId && currencyA && currencyA.isNative)
@@ -483,7 +486,6 @@ const TokenPair = ({
         }
         pendingText={pendingText}
       />
-
       <AutoColumn gap="20px">
         <GridColumn>
           <FirstColumn>
@@ -513,6 +515,7 @@ const TokenPair = ({
                       { replace: true },
                     )
                 }}
+                customChainId={chainId}
               />
               <Flex justifyContent="space-between" alignItems="center" marginTop="0.5rem">
                 <USDPrice>

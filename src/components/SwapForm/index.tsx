@@ -245,7 +245,12 @@ const SwapForm: React.FC<SwapFormProps> = props => {
                     )}
                   </PriceAlertButton>
                 )}
-                <ReverseTokenSelectionButton onClick={() => currencyIn && onChangeCurrencyOut(currencyIn)} />
+                <ReverseTokenSelectionButton
+                  onClick={() => {
+                    currencyIn && onChangeCurrencyOut(currencyIn)
+                    routeSummary && onUserInput(routeSummary.parsedAmountOut.toExact())
+                  }}
+                />
               </Flex>
             </AutoRow>
 

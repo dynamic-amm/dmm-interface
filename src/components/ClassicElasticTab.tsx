@@ -3,12 +3,11 @@ import { Trans } from '@lingui/macro'
 import { rgba } from 'polished'
 import { useEffect } from 'react'
 import { isMobile } from 'react-device-detect'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import { useMedia } from 'react-use'
 import { Flex, Text } from 'rebass'
 
 import { ReactComponent as DropdownSVG } from 'assets/svg/down.svg'
-import ElasticHackedModal from 'components/ElasticHackedModal'
 import { APP_PATHS } from 'constants/index'
 import { CLASSIC_NOT_SUPPORTED, ELASTIC_NOT_SUPPORTED } from 'constants/networks'
 import { VERSION } from 'constants/v2'
@@ -23,12 +22,10 @@ import { PoolClassicIcon, PoolElasticIcon } from './Icons'
 import { MouseoverTooltip } from './Tooltip'
 
 function ClassicElasticTab() {
-  const navigate = useNavigate()
   const theme = useTheme()
   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
   const isFarmPage = location.pathname.startsWith(APP_PATHS.FARMS)
-  const isMyPoolPage = location.pathname.startsWith(APP_PATHS.MY_POOLS)
 
   const { positions, farmPositions } = useElasticLegacy(false)
   const { claimInfo } = useElasticCompensationData(false)
@@ -42,8 +39,6 @@ function ClassicElasticTab() {
   const { chainId } = useActiveWeb3React()
   const notSupportedElasticMsg = ELASTIC_NOT_SUPPORTED()[chainId]
   const notSupportedClassicMsg = CLASSIC_NOT_SUPPORTED()[chainId]
-
-  const isOpenElasticHacked = !isMyPoolPage && tab === VERSION.ELASTIC
 
   const upToMedium = useMedia(`(max-width: ${MEDIA_WIDTHS.upToMedium}px)`)
 
@@ -272,20 +267,6 @@ function ClassicElasticTab() {
           </Text>
         </Flex>
       </MouseoverTooltip>
-
-      <ElasticHackedModal
-        isOpen={isOpenElasticHacked}
-        onClose={() => {
-          if (notSupportedClassicMsg) {
-            navigate({ pathname: APP_PATHS.MY_POOLS })
-          } else {
-            handleSwitchTab(VERSION.CLASSIC)
-          }
-        }}
-        onConfirm={() => {
-          navigate({ pathname: APP_PATHS.MY_POOLS })
-        }}
-      />
     </Flex>
   )
 }

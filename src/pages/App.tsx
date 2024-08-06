@@ -43,11 +43,17 @@ const SwapV3 = lazy(() => import('./SwapV3'))
 const PartnerSwap = lazy(() => import('./PartnerSwap'))
 // const Bridge = lazy(() => import('./Bridge'))
 const MyPool = lazy(() => import('./MyPool'))
+const Pools = lazy(() => import('./Pools'))
 
 const Farm = lazy(() => import('./Farm'))
 
 const PoolFinder = lazy(() => import('./PoolFinder'))
 const ElasticRemoveLiquidity = lazy(() => import('pages/RemoveLiquidityProAmm'))
+// const RedirectCreatePool = lazy(() => import('pages/CreatePool/RedirectCreatePool'))
+
+const RedirectElasticCreatePool = lazy(() => import('pages/AddLiquidityV2/RedirectElasticCreatePool'))
+
+const ElasticIncreaseLiquidity = lazy(() => import('pages/IncreaseLiquidity'))
 
 const RemoveLiquidity = lazy(() => import('pages/RemoveLiquidity'))
 
@@ -163,7 +169,6 @@ const RoutesWithNetworkPrefix = () => {
 
       {!ELASTIC_NOT_SUPPORTED()[chainId] && (
         <>
-          {/*
           <Route
             path={`${APP_PATHS.ELASTIC_CREATE_POOL}/:currencyIdA?/:currencyIdB?/:feeAmount?`}
             element={<RedirectElasticCreatePool />}
@@ -172,7 +177,6 @@ const RoutesWithNetworkPrefix = () => {
             path={`${APP_PATHS.ELASTIC_INCREASE_LIQ}/:currencyIdA?/:currencyIdB?/:feeAmount?/:tokenId?`}
             element={<ElasticIncreaseLiquidity />}
           />
-          */}
           <Route path={`${APP_PATHS.ELASTIC_REMOVE_POOL}/:tokenId`} element={<ElasticRemoveLiquidity />} />
         </>
       )}
@@ -261,6 +265,11 @@ export default function App() {
 
               <Route path={`${APP_PATHS.FIND_POOL}`} element={<PoolFinder />} />
               <>
+                {/* Pools Routes  */}
+                <Route path={`${APP_PATHS.POOLS}`} element={<RedirectWithNetworkSuffix />} />
+                <Route path={`${APP_PATHS.POOLS}/:network/:currencyIdA?/:currencyIdB?`} element={<Pools />} />
+              </>
+              <>
                 {/* Farms Routes */}
                 <Route path={`${APP_PATHS.FARMS}`} element={<RedirectWithNetworkSuffix />} />
                 <Route path={`${APP_PATHS.FARMS}/:network`} element={<Farm />} />
@@ -274,10 +283,8 @@ export default function App() {
 
               <>
                 {/* These are old routes and will soon be deprecated - Check: RoutesWithNetworkParam */}
-                {/*
-                  <Route path={`${APP_PATHS.ELASTIC_CREATE_POOL}/*`} element={<RedirectWithNetworkPrefix />} />
-                  <Route path={`${APP_PATHS.ELASTIC_INCREASE_LIQ}/*`} element={<RedirectWithNetworkPrefix />} />
-                  */}
+                <Route path={`${APP_PATHS.ELASTIC_CREATE_POOL}/*`} element={<RedirectWithNetworkPrefix />} />
+                <Route path={`${APP_PATHS.ELASTIC_INCREASE_LIQ}/*`} element={<RedirectWithNetworkPrefix />} />
 
                 <Route path={`${APP_PATHS.ELASTIC_REMOVE_POOL}/*`} element={<RedirectWithNetworkPrefix />} />
 

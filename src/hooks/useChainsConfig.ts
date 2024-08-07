@@ -16,7 +16,7 @@ export enum ChainState {
 export type ChainStateMap = { [chain in ChainId]: ChainState }
 
 const cacheInfo: { [chain: string]: NetworkInfo } = {}
-// todo danh, when chain setting from admin ready, update all place use this
+// todo viet-nv, when chain setting from admin ready, update all place use this
 export const NETWORKS_INFO = new Proxy(NETWORKS_INFO_HARDCODE, {
   get(target, p) {
     const prop = p as any as ChainId

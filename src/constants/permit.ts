@@ -17,7 +17,7 @@ export const PERMITTABLE_TOKENS: {
   }
 } = {
   [ChainId.MAINNET]: {
-    // '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48': { type: PermitType.SALT, version: '1' }, // USDC // TODO: Diep will check these tokens later
+    // '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48': { type: PermitType.SALT, version: '1' }, // USDC // TODO: viet-nv will check these tokens later
     // '0x6B175474E89094C44Da98b954EedeAC495271d0F': { type: PermitType.SALT, version: '1' }, // DAI
     '0xba100000625a3754423978a60c9317c58a424e3D': { type: PermitType.AMOUNT, version: '1' }, // BAL
     '0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72': { type: PermitType.AMOUNT, version: '1' }, // ENS

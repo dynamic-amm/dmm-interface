@@ -74,7 +74,7 @@ const RouteRow = ({ route, chainId, backgroundColor }: RouteRowProps) => {
                         const dex = getDexInfoByPool(pool, allDexes)
                         const poolId = pool.id.split('-')?.[0]
                         const link = (i => {
-                          // TODO: Dungz remove condition
+                          // TODO: viet-nv remove condition
                           return isAddress(chainId, poolId) && !['1inch', 'paraswap', '0x'].includes(pool.exchange) ? (
                             <StyledExchange
                               key={`${i}-${pool.id}`}

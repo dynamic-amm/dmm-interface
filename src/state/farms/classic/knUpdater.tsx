@@ -41,7 +41,7 @@ const KNUpdater = ({ isInterval = true }: { isInterval?: boolean }) => {
             //     : farmPool.version === 2
             //     ? FairLaunchVersion.V2
             //     : FairLaunchVersion.V3
-            // todo namgold: subgraph issue, revert this later
+            // todo viet-nv: subgraph issue, revert this later
             const version: FairLaunchVersion =
               Number(farmPool.start) < 1_000_000_000 ? FairLaunchVersion.V1 : FairLaunchVersion.V2
             const rewardTokens: Token[] = farmPool.rewardTokens.map(({ id, decimals, symbol, name }) =>

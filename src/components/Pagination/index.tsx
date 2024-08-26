@@ -55,7 +55,7 @@ export default function Pagination({
   }
 
   const onNext = () => {
-    if (currentPage < paginationRange[paginationRange.length - 1]) {
+    if (currentPage < +paginationRange[paginationRange.length - 1]) {
       onPageChange(currentPage + 1)
     }
   }

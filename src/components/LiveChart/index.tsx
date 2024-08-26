@@ -348,7 +348,7 @@ function LiveChart({
                         </Text>
                       ) : (
                         <>
-                          <Text fontSize={12} color={different >= 0 ? '#31CB9E' : '#FF537B'} marginRight="5px">
+                          <Text fontSize={12} color={+different >= 0 ? '#31CB9E' : '#FF537B'} marginRight="5px">
                             {different} ({differentPercent}%)
                           </Text>
                           {!hoverValue && (

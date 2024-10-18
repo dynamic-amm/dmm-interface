@@ -114,7 +114,7 @@ const SwapNavGroup = () => {
                 </IconWrapper>
                 <Flex alignItems={'center'} sx={{ flex: 1 }} justifyContent={'space-between'}>
                   <Trans>Cross-Chain</Trans>
-                  <img src={SquidLogoLight} alt="kyberswap with Squid" height={16} />
+                  <img src={SquidLogoLight} alt="kyberswap with Squid" style={{ height: 16 }} />
                 </Flex>
               </Flex>
             </StyledNavLink>

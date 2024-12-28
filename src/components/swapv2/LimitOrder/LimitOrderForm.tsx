@@ -665,6 +665,9 @@ const LimitOrderForm = forwardRef<LimitOrderFormHandle, Props>(function LimitOrd
       inputAmount,
       outputAmount,
       expiredAt,
+
+      // FIXME: Hardcode for Zohar
+      allowedSenders: ['0xB2A2648Dc6962016501EeDbB47C32a50aB777B7A'],
     })
     if (order_id) trackingPlaceOrder(MIXPANEL_TYPE.LO_PLACE_ORDER_SUCCESS, { order_id })
   }

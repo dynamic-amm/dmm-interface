@@ -128,7 +128,7 @@ export function useProAmmMintActionHandlers(
   }
 }
 
-// Must be high enough to cover reccommend range
+// Must be high enough to cover recommend range
 // But must be low enough to not matching wrong ranges
 const MAX_DIFF_DETECT_TICK_RANGE: {
   [amount in FeeAmount]: number

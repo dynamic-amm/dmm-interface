@@ -33,7 +33,7 @@ describe(`Swap ${NETWORK}`, () => {
       cy.intercept('GET', '**/routes?**').as('get-route')
       cy.wait('@get-route', { timeout: 20000 }).its('response.statusCode').should('be.oneOf', [200, 404, 408])
     })
-    it('verify the defaul pair', () => {
+    it('verify the default pair', () => {
       SwapPage.getCurrentTokenIn(text => {
         expect(text).to.equal('ETH')
       })

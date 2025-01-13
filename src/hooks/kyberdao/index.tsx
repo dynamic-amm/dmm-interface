@@ -164,7 +164,7 @@ export function useKyberDaoStakeActions() {
     [addTransactionWithType, stakingContract],
   )
   const undelegate = useCallback(
-    // address here alway should be user's address
+    // address here always should be user's address
     async (address: string) => {
       if (!stakingContract) {
         throw new Error(CONTRACT_NOT_FOUND_MSG)

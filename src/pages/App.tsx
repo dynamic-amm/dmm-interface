@@ -146,6 +146,8 @@ const RoutesWithNetworkPrefix = () => {
 
   const chainInfoFromParam = SUPPORTED_NETWORKS.find(chain => NETWORKS_INFO[chain].route === network)
   if (!chainInfoFromParam) {
+    // nothing
+    //
     return <Navigate to={'/'} replace />
   }
 

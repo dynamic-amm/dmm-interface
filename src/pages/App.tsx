@@ -11,6 +11,7 @@ import AppHaveUpdate from 'components/AppHaveUpdate'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Footer from 'components/Footer/Footer'
 import Header from 'components/Header'
+import Kai from 'components/Kai'
 import Loader from 'components/LocalLoader'
 import ModalsGlobal from 'components/ModalsGlobal'
 import ProtectedRoute from 'components/ProtectedRoute'
@@ -223,6 +224,7 @@ export default function App() {
         <ModalsGlobal />
         {!isPartnerSwap && <TopBanner />}
         <HeaderWrapper>
+          <Kai />
           <SupportButton />
           <Header />
         </HeaderWrapper>

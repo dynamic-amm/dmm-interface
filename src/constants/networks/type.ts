@@ -4,6 +4,7 @@ import { EnvKeys } from 'constants/env'
 import { ChainState } from 'hooks/useChainsConfig'
 
 export interface NetworkInfo {
+  readonly displayName?: string
   readonly chainId: ChainId
 
   // route can be used to detect which chain is favored in query param, check out useActiveNetwork.ts
